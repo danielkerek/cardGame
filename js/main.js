@@ -34,9 +34,9 @@ function selectCard(cardData) {
     const selectedCard = '<div class="col-md-4">'+
                             '<div class="card">'+
                                 '<div class="card-body">'+
-                                    '<h6>'+selectedCardData.realName+'</h6>'+
-                                    '<p>'+selectedCardData.playerName+'</p>'+
-                                    '<p>'+selectedCardData.asset+'</p>'+
+                                    '<h6 id="selectedName">'+selectedCardData.realName+'</h6>'+
+                                    '<p id="selectedPlayer">'+selectedCardData.playerName+'</p>'+
+                                    '<p id="selectedAsset">'+selectedCardData.asset+'</p>'+
                                 '</div>'+
                             '</div>'+
                         '</div>';
@@ -53,4 +53,31 @@ function sortDesc() {
     data.sort((a,b) => (a.realName < b.realName) ? 1 : ((b.realName < a.realName) ? -1 : 0))
     document.getElementById('cardContainer').innerHTML = '';
     renderCards();
+}
+
+function submitPlayer() {
+    if (!document.getElementById('selectedName')) {
+        alert("Please select a card before submitting!");
+    } else {
+        const submittedcard = {
+            realName: document.getElementById('selectedName').innerText,
+            playerName: document.getElementById('selectedPlayer').innerText,
+            asset: document.getElementById('selectedAsset').innerText
+        }
+        $.ajax({
+            url: "/submitCard",
+            type: "POST",
+            data: JSON.parse(JSON.stringify(submittedcard)),
+            dataType: "json",
+            success: function(data) {
+              alert("Successfully submitted");
+              console.log(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              var errorText = 'errorThrown: ' + errorThrown + '\n' 
+                                + 'errorCode: ' + jqXHR.status;
+              $('#error').val(errorText);
+            }
+          });
+    }
 }

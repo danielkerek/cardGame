@@ -13,7 +13,7 @@
         </div>
     </section>
     <section class="container">
-        <button onClick="sortAsc()" class="btn">Sort Ascending</button><button onClick="sortDesc()" class="btn">Sort Descending</button>
+        <button onClick="sortAsc()" class="btn">Sort Ascending</button><button onClick="sortDesc()" class="btn">Sort Descending</button><button onClick="submitPlayer()" class="btn">Submit</button>
     </section>
     <section class="container">
         <h3>OverView</h3>
@@ -22,10 +22,32 @@
         </div>
     </section>
 </body>
-<script type="text/javascript" src="node_modules/bootstrap/js/dist/base-component.js"></script>
+<script src="node_modules/bootstrap/js/dist/base-component.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/jquery-mockjax/dist/jquery.mockjax.js"></script>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 <script type="text/javascript">
     renderCards();
+    $.mockjax({
+    type: "post",
+    url: "/submitCard",
+    dataType: "json",
+    response: function (settings) {
+        if (settings.data) {
+            this.responseText = {
+                status: 200,
+                text: "Success"
+            };
+        } else {
+            this.responseText = {
+                status: 400,
+                text: "Bad request"
+            };
+        }
+    }
+    });
+
+    
 </script>
 </html>
