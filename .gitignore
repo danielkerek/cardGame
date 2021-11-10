@@ -1,1 +1,5 @@
+# Code editor config
 .vs
+
+# Dependencies
+node_modules

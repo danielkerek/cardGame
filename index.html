@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="javascript" src="js/main.js"></script>
+    <title>The Card Game</title>
     <link rel="stylesheet" href="css/main.css">
-<title>The Card Game</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-
+    <section class="container">
+        <div class="selected-card-container" id ="selectedCard">
+            <p class="card select-card">Select any card to see details</p>
+        </div>
+    </section>
+    <section class="container">
+        <h3>OverView</h3>
+        <div class="row" id="cardContainer">
+            
+        </div>
+    </section>
 </body>
-
+<script type="text/javascript" src="node_modules/bootstrap/js/dist/base-component.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+    renderCards();
+</script>
 </html>

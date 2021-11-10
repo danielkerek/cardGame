@@ -1,0 +1,20 @@
+.selected-card-container{
+    min-height: 140px;
+    margin: 12px 0px;
+}
+.select-card {
+    line-height: 140px;
+}
+.card-wrapper {
+    margin-bottom: 12px;
+}
+
+.card-list-body{
+    cursor: pointer;
+}
+
+.card-list-body > p, h6 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
