@@ -42,3 +42,15 @@ function selectCard(cardData) {
                         '</div>';
     document.getElementById('selectedCard').innerHTML = selectedCard;
 }
+
+function sortAsc() {
+    data.sort((a,b) => (a.realName > b.realName) ? 1 : ((b.realName > a.realName) ? -1 : 0))
+    document.getElementById('cardContainer').innerHTML = '';
+    renderCards();
+}
+
+function sortDesc() {
+    data.sort((a,b) => (a.realName < b.realName) ? 1 : ((b.realName < a.realName) ? -1 : 0))
+    document.getElementById('cardContainer').innerHTML = '';
+    renderCards();
+}
