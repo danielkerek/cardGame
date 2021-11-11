@@ -20,10 +20,27 @@ function encodeString(string) {
     return string.replace(/'/g, "\\'").replace(/"/g, '&quot;');
 }
 
+async function getPlayers() {
+    $.ajax({
+        url: "/getPlayers",
+        type: "GET",
+        dataType: "json",
+        success: function(result) {
+            debugger;
+            renderCards(result.data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          var errorText = 'errorThrown: ' + errorThrown + '\n' 
+                            + 'errorCode: ' + jqXHR.status;
+          console.log(errorText);
+        }
+      });
+}
+
 //Function for rendering the cards to the screen
-function renderCards() {
-    for (let i = 0; i < data.length; i++) {
-        document.getElementById('cardContainer').innerHTML += createCardTemplate(data[i]);        
+function renderCards(playerData) {
+    for (let i = 0; i < playerData.length; i++) {
+        document.getElementById('cardContainer').innerHTML += createCardTemplate(playerData[i]);        
     }
 }
 
